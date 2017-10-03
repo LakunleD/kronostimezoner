@@ -1,6 +1,6 @@
 const socket = io('http://localhost:8000/');
 
-socket.on('connect', (data) => {
+socket.on('broadcast', (data) => {
   console.log('hello world');
   console.log(data);
 });

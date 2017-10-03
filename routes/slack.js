@@ -4,6 +4,8 @@ const router = express.Router();
 const slack = require('slack');
 const Team = require('../models/teams.js');
 
+const io = require('../io.js');
+
 // slack button route
 router.get('/install', (req, res) => {
   const client_id = process.env.SLACK_CLIENT_ID; // eslint-disable-line
@@ -203,6 +205,7 @@ router.post('/catchmessages', (req, res) => {
             reject(err);
           }
         });
+        io.emit('broadcast', { data: 'super important 2' });
       });
       // Return a promise to catch any errors.
       return postMessagePromise;
